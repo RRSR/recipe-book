@@ -1,10 +1,13 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Recipe} from './recipe';
 import {Ingredient} from '../shared/ingredient';
-import {Http} from "@angular/http";
+import {Headers, Http, Response} from "@angular/http";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RecipeService {
+
+  recipesChanged = new EventEmitter<Recipe[]>();
 
   recipes: Recipe[] = [
     new Recipe('Mini Cheesecakes',
@@ -45,9 +48,18 @@ export class RecipeService {
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.post('https://recipe-book-ccee3.firebaseio.com/recipes.json', data, {headers: headers});
+    return this.http.put('https://recipe-book-ccee3.firebaseio.com/recipes.json', data, {headers: headers});
   }
 
   fetchData() {
+    return this.http.get('https://recipe-book-ccee3.firebaseio.com/recipes.json')
+      .map((response: Response) => response.json())
+      .subscribe(
+        (data: Recipe[]) => {
+          this.recipes = data;
+          this.recipesChanged.emit(this.recipes);
+        }
+      );
   }
+
 }
