@@ -1,3 +1,105 @@
-<p>
-  recipe-edit works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="recipeForm">
+      <div class="form-group">
+        <div class="col-xs-12">
+          <button class="btn btn-success" (click)="onSubmit()" [disabled]="!recipeForm.valid">Save</button>
+          <button class="btn btn-danger" (click)="onBack()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text"
+                   id="title"
+                   class="form-control"
+                   formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imageUrl">Image URL</label>
+            <input type="text"
+                   id="imageUrl"
+                   class="form-control"
+                   formControlName="imagePath"
+                   #imageUrl>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="img">
+              <img [src]="imageUrl.value">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="content">Content</label>
+            <textarea type="text"
+                      id="content"
+                      class="form-control"
+                      rows="6"
+                      formControlName="description">
+      </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <ul class="list-group" formArrayName="ingredients">
+              <div class="row"
+                   *ngFor="let ingredient of recipeForm.controls['ingredients'].controls; let i = index">
+                <div formGroupName="{{i}}">
+                  <div class="col-sm-5">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="name">
+                  </div>
+                  <div class="col-sm-5">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="amount">
+                  </div>
+                  <div class="col-sm-2">
+                    <button class="btn btn-danger" (click)="onRemoveItem(i)">X</button>
+                    <br><br>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <div class="col-xs-5">
+          <input type="text"
+                 class="form-control"
+                 #itemName>
+        </div>
+        <div class="col-xs-5">
+          <input type="text"
+                 class="form-control"
+                 #itemAmount>
+        </div>
+        <div class="col-xs-2">
+          <button type="button" class="btn btn-primary" (click)="onAddItem(itemName.value, itemAmount.value)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+</div>

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Recipe} from './recipe';
 import {Ingredient} from '../shared/ingredient';
+import {Http} from "@angular/http";
 
 @Injectable()
 export class RecipeService {
@@ -16,7 +17,7 @@ export class RecipeService {
       [new Ingredient('Lemon', 2), new Ingredient('Pistachios', 10)])
   ];
 
-  constructor() {
+  constructor(private http: Http) {
   }
 
   getRecipes() {
@@ -29,5 +30,24 @@ export class RecipeService {
 
   deleteRecipe(selectedRecipe: Recipe) {
     this.recipes.splice(this.recipes.indexOf(selectedRecipe), 1);
+  }
+
+  addRecipe(newRecipe: Recipe) {
+    this.recipes.push(newRecipe);
+  }
+
+  editRecipe(oldRecipe: Recipe, newRecipe: Recipe) {
+    this.recipes[this.recipes.indexOf(oldRecipe)] = newRecipe;
+  }
+
+  storeData() {
+    const data = JSON.stringify(this.recipes);
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post('https://recipe-book-ccee3.firebaseio.com/recipes.json', data, {headers: headers});
+  }
+
+  fetchData() {
   }
 }
