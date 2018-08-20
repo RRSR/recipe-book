@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Recipe} from '../recipe';
 import {ShoppingListService} from '../../shopping-list/shopping-list.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Subscription} from 'rxjs/Subscription';
 import {RecipeService} from '../recipe.service';
 
 

@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Recipe} from './recipe';
 import {Ingredient} from '../shared/ingredient';
-import {Headers, Http, Response} from "@angular/http";
+import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()

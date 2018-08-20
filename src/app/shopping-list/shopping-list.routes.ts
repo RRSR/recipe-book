@@ -1,5 +1,5 @@
-import {ShoppingListComponent} from "./shopping-list.component";
-import {RouterModule, Routes} from "@angular/router";
+import {ShoppingListComponent} from './shopping-list.component';
+import {RouterModule, Routes} from '@angular/router';
 
 const SHOPPING_LIST_ROUTES: Routes = [
   {

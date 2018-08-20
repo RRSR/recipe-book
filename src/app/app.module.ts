@@ -7,8 +7,8 @@ import {HeaderComponent} from './header.component';
 import {RecipeService} from './recipes/recipe.service';
 import {ShoppingListService} from './shopping-list/shopping-list.service';
 import {routing} from './app.routes';
-import {HttpModule} from "@angular/http";
-import {CoreModule} from "./core.module";
+import {HttpModule} from '@angular/http';
+import {CoreModule} from './core.module';
 
 
 @NgModule({

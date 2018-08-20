@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {RecipeService} from "../recipe.service";
-import {Subscription} from "rxjs";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Recipe} from "../recipe";
+import {ActivatedRoute, Router} from '@angular/router';
+import {RecipeService} from '../recipe.service';
+import {Subscription} from 'rxjs/Subscription';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Recipe} from '../recipe';
 
 @Component({
   selector: 'rb-recipe-edit',
@@ -41,7 +41,7 @@ export class RecipeEditComponent implements OnDestroy, OnInit {
   }
 
   public onSubmit() {
-    let newRecipe: Recipe = this.recipeForm.value;
+    const newRecipe: Recipe = this.recipeForm.value;
     if (this.isNew) {
       this.recipeService.addRecipe(newRecipe);
     } else {
@@ -75,7 +75,7 @@ export class RecipeEditComponent implements OnDestroy, OnInit {
     let recipeName = '';
     let recipeImageUrl = '';
     let recipeContent = '';
-    let recipeIngredients: FormArray = new FormArray([]);
+    const recipeIngredients: FormArray = new FormArray([]);
 
     if (!this.isNew) {
       if (this.recipe.hasOwnProperty('ingredients')) {

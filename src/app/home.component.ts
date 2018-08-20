@@ -4,7 +4,7 @@ import {Component, OnInit} from '@angular/core';
   selector: 'rb-home',
   template: `
     <h1>
-      Hello to the Recipe Book!
+      Hello to the Recipe Book web application!
     </h1>
   `,
   styles: []
